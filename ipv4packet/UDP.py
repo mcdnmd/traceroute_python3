@@ -24,12 +24,12 @@ class UDP:
         if len(data) - index + 7 != 0:
             self.header.data = data[index + 8:]
 
-    def create_udp_header(self, sport, dport, message=b''):
+    def create_udp_header(self, sport, dport, message):
         self.header.sport = sport
         self.header.dport = dport
         self.header.length = 8 + len(message)
         self.header.data = message
-        self.header.checksum = self.calculate_checksum()
+        self.header.checksum = 0
 
     def calculate_checksum(self):
         """https://www.securitynik.com/2015/08/calculating-udp-checksum-with-taste-of.html"""
@@ -54,6 +54,6 @@ class UDP:
                              self.header.sport,
                              self.header.dport,
                              self.header.length,
-                             int(self.header.checksum, 16))
+                             self.header.checksum)
         result += self.header.data
         return result

@@ -1,4 +1,8 @@
+import socket
+
 from modules.TerminalParser import parse_terminal_input
+from modules.traceroute.Traceroute import Traceroute
+from modules.traceroute.TracerouteInfo import TracerouteInfo
 
 
 def main():
@@ -7,7 +11,7 @@ def main():
 
 
 def launch(args):
-    dest = args.destination
+    dest = socket.gethostbyname(args.destination)
     hops = args.max_hops
     icmp_echo = args.icmp_echo
     method = args.method
@@ -16,9 +20,11 @@ def launch(args):
     pack_num = args.packet_number
     ttl = args.ttl
 
-    tracer = Traceroute(dest, hops, icmp_echo, method, port, timeout, pack_num,
-                        ttl)
-    tracer.find_route()
+    traceroute_info = TracerouteInfo(dest, hops, icmp_echo, method, port,
+                                     timeout, pack_num, ttl)
+
+    router = Traceroute(traceroute_info)
+    router.start()
 
 
 if __name__ == '__main__':

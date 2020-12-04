@@ -37,3 +37,21 @@ class ICMP:
                 self.header.data.append(ICMP(ip_header, raw_data).header)
             elif ip_header.protocol == 17:
                 self.header.data.append(UDP(ip_header, raw_data).header)
+
+    def create_icmp_header(self, id, seq):
+        self.header.type = 8
+        self.header.code = 0
+        self.header.checksum = 0
+        self.header.id = id
+        self.header.seq = seq
+        self.header.data = b''
+
+    def pack(self):
+        result = struct.pack('!BBHHh',
+                             self.header.type,
+                             self.header.code,
+                             self.header.checksum,
+                             self.header.id,
+                             self.header.seq)
+        result += self.header.data
+        return result

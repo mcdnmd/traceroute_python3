@@ -22,7 +22,7 @@ def parse_terminal_input():
                         default=33434,
                         help='use destination PORT port (default: 33434)')
     parser.add_argument('-q', '--tries', action='store', type=int,
-                        dest='packet_number', default=1,
+                        dest='packet_number', default=3,
                         help='send NUM probe packets per hop (default: 3)')
     parser.add_argument('-w', '--wait', action='store', type=int,
                         dest='timeout', default=3,

@@ -7,5 +7,5 @@ class TracerouteInfo:
         self.method = method
         self.port = port
         self.timeout = timeout
-        self.pack_per_hop = pack_num
+        self.packs_per_hop = pack_num
         self.ttl = ttl
