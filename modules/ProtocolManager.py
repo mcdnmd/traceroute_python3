@@ -19,12 +19,12 @@ class ProtocolManager:
         return ip.header, udp.header, packet
 
     @staticmethod
-    def create_icmp_ip_pack(src, dst, ttl, id, seq):
+    def create_icmp_ip_pack(src, dst, ttl):
         ip = IP()
         ip.create_ip_header(src[0], dst[0], ttl, 1)
 
         icmp = ICMP(ip.header)
-        icmp.create_icmp_header(id, seq)
+        icmp.create_icmp_header()
         ip.header.total_length = 23
 
         packet = ip.pack() + icmp.pack()

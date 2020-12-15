@@ -13,8 +13,8 @@ class Traceroute:
         self.traceroute_info = traceroute_info
         self.src_addr = ('0.0.0.0', 33095)
         self.dst_addr = (self.traceroute_info.dest, self.traceroute_info.port)
-        self.socket = SocketManager(traceroute_info.timeout,
-                                    traceroute_info.icmp_echo, self.src_addr)
+        self.sock = SocketManager(traceroute_info.timeout,
+                                  traceroute_info.icmp_echo, self.src_addr)
         self.printer = TerminalPrinter()
 
     def start(self):
@@ -38,9 +38,9 @@ class Traceroute:
             else:
                 ip_header, udp_header, packet = self.create_udp_request()
             start_time = time.time()
-            self.socket.send_request(packet, self.dst_addr)
+            self.sock.send_request(packet, self.dst_addr)
             try:
-                data = self.socket.receive_icmp_message()
+                data = self.sock.receive_icmp_message()
                 stop_time = time.time() - start_time
             except socket.timeout:
                 self.printer.print_noting()
@@ -59,14 +59,15 @@ class Traceroute:
     def create_icmp_request(self):
         return ProtocolManager.create_icmp_ip_pack(self.src_addr,
                                                    self.dst_addr,
-                                                   self.traceroute_info.ttl,
-                                                   1337,
-                                                   1)
+                                                   self.traceroute_info.ttl)
 
     @staticmethod
     def parse_reply_data(raw_data, sent_ip_header):
         ip = IP(raw_data)
         icmp = ICMP(ip.header, raw_data)
 
-        if int(sent_ip_header.id, 16) == icmp.header.data[0].id:
+        if icmp.header.type == 0 and icmp.header.code == 0:
+            return ip.header.source_address
+
+        if sent_ip_header.id == icmp.header.data[0].id:
             return ip.header.source_address

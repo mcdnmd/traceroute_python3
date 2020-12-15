@@ -3,6 +3,7 @@ class ICMPHeader:
         self.type = None
         self.code = None
         self.checksum = None
+        self.unused = None
         self.id = None
         self.seq = None
         self.data = None

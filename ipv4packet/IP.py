@@ -1,3 +1,4 @@
+import os
 import random
 import struct
 import ipaddress
@@ -36,8 +37,7 @@ class IP:
         self.header.ihl = 5
         self.header.dscp = 0
         self.header.ecn = 0
-        number = random.randint(1, 9999)
-        self.header.id = hex(number << (18 - len(bin(number))))
+        self.header.id = os.getpid() & 0xFFFF0
         self.header.dont_fragment_flag = 1
         self.header.more_fragments_flag = 0
         self.header.offset = 0
@@ -56,7 +56,7 @@ class IP:
                        self.header.offset
 
         result = struct.pack('!BBHHHBBH4s4s', version_ihl, dscp_ecn,
-                             self.header.total_length, int(self.header.id, 16),
+                             self.header.total_length, self.header.id,
                              flags_offset, self.header.ttl,
                              self.header.protocol, self.header.header_checksum,
                              int(self.header.source_address).to_bytes(4,
