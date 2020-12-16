@@ -50,4 +50,4 @@ class TestIpParser(unittest.TestCase):
 
     def test_dest_ip(self):
         self.assertEqual(ipaddress.IPv4Address('192.168.0.103'),
-                          self.ip.header.destination_address)
+                         self.ip.header.destination_address)

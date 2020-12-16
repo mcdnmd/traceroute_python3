@@ -52,8 +52,7 @@ class IP:
         dscp_ecn = (self.header.dscp << 2) + self.header.ecn
         flags_offset = (self.header.zero_flag << 15) + (
                 self.header.dont_fragment_flag << 14) + (
-                               self.header.more_fragments_flag << 13) + \
-                       self.header.offset
+                self.header.more_fragments_flag << 13) + self.header.offset
 
         result = struct.pack('!BBHHHBBH4s4s', version_ihl, dscp_ecn,
                              self.header.total_length, self.header.id,
