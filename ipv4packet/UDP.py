@@ -32,7 +32,6 @@ class UDP:
         self.header.checksum = 0
 
     def calculate_checksum(self):
-        """https://www.securitynik.com/2015/08/calculating-udp-checksum-with-taste-of.html"""
         src = int(self.ip_header.source_address)
         dst = int(self.ip_header.destination_address)
         part_1 = src >> 16
@@ -40,10 +39,10 @@ class UDP:
         part_3 = dst >> 16
         part_4 = dst & 0b1111_1111
 
-        pre_value = part_1 + part_2 + part_3 + part_4 + \
-                    self.ip_header.protocol + self.ip_header.ihl + \
-                    self.header.sport + self.header.dport + \
-                    self.header.length + 0
+        pre_value = part_1 + part_2 + part_3 + part_4
+        pre_value += self.ip_header.protocol + self.ip_header.ihl
+        pre_value += self.header.sport + self.header.dport
+        pre_value += self.header.length + 0
 
         final_sum_1 = pre_value >> 16
         final_sum_2 = pre_value & 0b1111_1111_1111_1111

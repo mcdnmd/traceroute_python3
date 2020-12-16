@@ -7,7 +7,6 @@ from ipv4packet.UDPHeader import UDPHeader
 class ProtocolManager:
     @staticmethod
     def create_udp_ip_pack(src, dst, ttl, message=b'SUPERMAN!'):
-
         ip = IP()
         ip.create_ip_header(src[0], dst[0], ttl, 17)
         udp = UDP(ip.header)

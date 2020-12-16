@@ -51,16 +51,16 @@ class IP:
         version_ihl = (self.header.version << 4) + self.header.ihl
         dscp_ecn = (self.header.dscp << 2) + self.header.ecn
         flags_offset = (self.header.zero_flag << 15) + (
-                    self.header.dont_fragment_flag << 14) + (
-                                   self.header.more_fragments_flag << 13) + \
+                self.header.dont_fragment_flag << 14) + (
+                               self.header.more_fragments_flag << 13) + \
                        self.header.offset
 
         result = struct.pack('!BBHHHBBH4s4s', version_ihl, dscp_ecn,
                              self.header.total_length, self.header.id,
                              flags_offset, self.header.ttl,
                              self.header.protocol, self.header.header_checksum,
-                             int(self.header.source_address).to_bytes(4,
-                                                                      'big'),
-                             int(self.header.destination_address).to_bytes(4,
-                                                                           'big'))
+                             int(self.header.source_address)
+                             .to_bytes(4, 'big'),
+                             int(self.header.destination_address)
+                             .to_bytes(4, 'big'))
         return result

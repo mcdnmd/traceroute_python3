@@ -15,7 +15,7 @@ class TestUdpIpCreation(unittest.TestCase):
         self.message = b'Test Message 1341'
         self.ip_header, self.udp_header, self.packet = \
             protocol_manager.create_udp_ip_pack(
-            self.src, self.dst, self.ttl, self.message)
+                self.src, self.dst, self.ttl, self.message)
 
     def test_ip_header_dst_addr(self):
         self.assertEqual(ipaddress.IPv4Address(self.dst[0]),

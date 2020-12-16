@@ -36,6 +36,3 @@ class SocketManager:
             return self.receiver.recvfrom(1024)
         except socket.timeout:
             raise
-
-
-

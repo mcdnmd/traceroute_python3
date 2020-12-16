@@ -18,7 +18,7 @@ def launch(args):
     port = args.port
     timeout = args.timeout
     pack_num = args.packet_number
-    ttl = args.ttl
+    ttl = args.first_hop
 
     traceroute_info = TracerouteInfo(dest, hops, icmp_echo, method, port,
                                      timeout, pack_num, ttl)

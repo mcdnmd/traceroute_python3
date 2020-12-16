@@ -10,7 +10,6 @@
 import socket
 
 from scapy.layers.inet import IP, ICMP
-
 from modules.ProtocolManager import ProtocolManager
 
 
@@ -32,7 +31,8 @@ class PseudoNetwork:
     def create_icmp_ttl_exceeded(self, src_addr, ttl):
         packet = IP(dst=self.dst_addr, src=src_addr) / ICMP(type=11, code=0)
         message = b'Hi from mcdnmd!'
-        request_data = ProtocolManager().create_udp_ip_pack((self.dst_addr, self.dst_port),
+        request_data = ProtocolManager().create_udp_ip_pack((self.dst_addr,
+                                                             self.dst_port),
                                                             (src_addr, 33443),
                                                             ttl,
                                                             message)

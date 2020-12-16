@@ -6,7 +6,7 @@ def parse_terminal_input():
     parser.add_argument('destination', action='store',
                         help='domain name or IP-address')
     parser.add_argument('-f', '--first-hop', type=int, action='store',
-                        default=1, dest='ttl',
+                        default=1, dest='first_hop',
                         help='set initial hop distance, i.e., time-to-live '
                              '(default: 1)')
     parser.add_argument('-I', '--icmp', action='store_true', dest='icmp_echo',
