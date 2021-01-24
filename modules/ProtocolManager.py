@@ -1,7 +1,6 @@
 from ipv4packet.ICMP import ICMP
 from ipv4packet.IP import IP
 from ipv4packet.UDP import UDP
-from ipv4packet.UDPHeader import UDPHeader
 
 
 class ProtocolManager:

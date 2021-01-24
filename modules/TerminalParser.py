@@ -9,8 +9,6 @@ def parse_terminal_input():
                         default=1, dest='first_hop',
                         help='set initial hop distance, i.e., time-to-live '
                              '(default: 1)')
-    parser.add_argument('-I', '--icmp', action='store_true', dest='icmp_echo',
-                        default=False, help='use ICMP ECHO as probe')
     parser.add_argument('-m', '--max-hop', type=int, action='store',
                         dest='max_hops', default=64,
                         help='Maximum number of hops')
