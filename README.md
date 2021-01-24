@@ -1,8 +1,8 @@
 # traceroute_python3
-Version: 1.0
+Version: 2.0
 
 Автор: Полтораднев Кирилл
-Дата: 16.12.2020
+Дата: 24.01.2021
 
 ## Описание
 Утилита traceroute предназначенная для определения маршрутов следования данных в сетях TCP/IP. Traceroute может использовать разные протоколы передачи данных в зависимости от операционной системы устройства. Такими протоколами могут быть UDP или ICMP.
@@ -37,9 +37,9 @@ Version: 1.0
 * `modules.TerminalPrinter` - класс, реализующий методы для печати результатов работы утилиты
 * `modules.traceroute.TracerouteInfo` - структура данных для хранения параметров запуска утилиты
 * `modules.traceroute.Traceroute` - класс, реализующий логику работы утилиты
-* `ipv4packet.IPHeader` - структура данных для формирования IP заголовка
-* `ipv4packet.IP` - класс-обертка над `IPHeader`
-* `ipv4packet.UDPHeader` - структура данных для формирования UDP сообщения
-* `ipv4packet.UDP` - класс-обертка над `UDPHeader`
-* `ipv4packet.ICMPHeader` - структура данных для формирования ICMP сообщения
-* `ipv4packet.ICMP` - класс-обертка над `ICMPHeader`
+* `ipv4packet.IP.IPHeader` - структура данных для формирования IP заголовка
+* `ipv4packet.IP.IP` - класс-обертка над `IPHeader`
+* `ipv4packet.UDP.UDPHeader` - структура данных для формирования UDP сообщения
+* `ipv4packet.UDP.UDP` - класс-обертка над `UDPHeader`
+* `ipv4packet.ICMP.ICMPHeader` - структура данных для формирования ICMP сообщения
+* `ipv4packet.ICMP.ICMP` - класс-обертка над `ICMPHeader`
